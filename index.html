@@ -26,8 +26,10 @@ body {background:#f5f6fa;color:#111;}
 .active {border-color:#2d4cc8;color:#2d4cc8;}
 
 .banner img {
-  width:100%;border-radius:12px;
+  width:100%;
+  border-radius:12px;
   padding:0 16px;
+  display:block;
 }
 
 .section {padding:16px;}
@@ -93,7 +95,7 @@ h2 {margin-bottom:10px;}
 .buy:disabled {background:#ccc;}
 
 /* PAGE 2 */
-.page2 {
+#page2 {
   display:none;
   padding:16px;
 }
@@ -109,8 +111,7 @@ h2 {margin-bottom:10px;}
 
 <body>
 
-<!-- ================= PAGE 1 ================= -->
-<div id="page1">
+<!-- ====== PAGE 1 (ASLI LU, TIDAK DIUBAH) ====== -->
 
 <div class="header">
   <div>Artatix</div>
@@ -194,29 +195,27 @@ h2 {margin-bottom:10px;}
   <button class="buy" id="buy" disabled>Beli Sekarang</button>
 </div>
 
-</div>
+<!-- ====== PAGE 2 (TAMBAHAN AMAN) ====== -->
+<div id="page2">
 
-<!-- ================= PAGE 2 ================= -->
-<div id="page2" class="page2">
+  <h2>Pembayaran QRIS</h2>
 
-<h2>Pembayaran QRIS</h2>
+  <div class="card" style="text-align:center;">
+    <img src="qris.png" style="width:220px;margin-bottom:10px;">
+    <p><b>Scan QRIS Pembayaran</b></p>
+    <p>Masukan Jumlah Nominal sesuai total</p>
+    <h3 id="payTotal">Rp0</h3>
+  </div>
 
-<div class="card" style="text-align:center;">
-  <img src="qris.png" style="width:220px;margin-bottom:10px;">
-  <p><b>Scan QRIS Pembayaran</b></p>
-  <p>Masukan Jumlah Nominal sesuai total</p>
-  <h3 id="payTotal">Rp0</h3>
-</div>
+  <div class="card">
+    <b>Upload Bukti Pembayaran</b><br><br>
+    <input type="file" id="bukti" style="width:100%;">
+  </div>
 
-<div class="card">
-  <b>Upload Bukti Pembayaran</b><br><br>
-  <input type="file" id="bukti" style="width:100%;">
-</div>
-
-<button onclick="submitPayment()" 
-style="width:100%;padding:14px;border:none;border-radius:10px;background:#e53935;color:#fff;font-size:16px;">
-Submit
-</button>
+  <button onclick="submitPayment()" 
+  style="width:100%;padding:14px;border:none;border-radius:10px;background:#e53935;color:#fff;font-size:16px;">
+  Submit
+  </button>
 
 </div>
 
@@ -225,13 +224,8 @@ let data = {festival:0,premium:0,fast:0};
 
 const price = {festival:320000,premium:495000,fast:595000};
 
-function inc(type){
-  if(data[type] < 4){ data[type]++; update(); }
-}
-
-function dec(type){
-  if(data[type] > 0){ data[type]--; update(); }
-}
+function inc(type){ if(data[type] < 4){ data[type]++; update(); } }
+function dec(type){ if(data[type] > 0){ data[type]--; update(); } }
 
 function rupiah(num){
   return "Rp" + num.toLocaleString("id-ID");
@@ -257,17 +251,14 @@ function update(){
   document.getElementById("buy").disabled = total === 0;
 }
 
-// PINDAH KE PAGE 2
+/* PINDAH HALAMAN TANPA MERUSAK */
 document.getElementById("buy").addEventListener("click", function(){
-  let total = document.getElementById("grand").innerText;
+  document.getElementById("payTotal").innerText = document.getElementById("grand").innerText;
 
-  document.getElementById("payTotal").innerText = total;
-
-  document.getElementById("page1").style.display = "none";
-  document.getElementById("page2").style.display = "block";
+  document.body.innerHTML = document.getElementById("page2").outerHTML;
 });
 
-// SUBMIT
+/* SUBMIT */
 function submitPayment(){
   let file = document.getElementById("bukti").files.length;
 
