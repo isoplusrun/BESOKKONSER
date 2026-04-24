@@ -242,7 +242,30 @@ function update(){
   document.getElementById("grand2").innerText = rupiah(total);
 
   document.getElementById("buy").disabled = total === 0;
-}
+  }
+  <!-- PAGE 2: PEMBAYARAN -->
+<div id="paymentPage" style="display:none;padding:16px;">
+
+  <h2>Pembayaran QRIS</h2>
+
+  <div style="background:#fff;padding:16px;border-radius:12px;text-align:center;margin-bottom:16px;">
+    <img src="qris.png" style="width:220px;margin-bottom:10px;">
+    <p style="font-weight:bold;">Scan QRIS untuk pembayaran</p>
+    <p>Masukan Jumlah Nominal sesuai total</p>
+  </div>
+
+  <div style="background:#fff;padding:16px;border-radius:12px;margin-bottom:16px;">
+    <label><b>Upload Bukti Pembayaran</b></label><br><br>
+    <input type="file" id="bukti" style="width:100%;">
+  </div>
+
+  <button onclick="submitPayment()" 
+    style="width:100%;padding:14px;border:none;border-radius:10px;background:#e53935;color:#fff;font-size:16px;cursor:pointer;">
+    Submit
+  </button>
+
+</div>
+  
 </script>
 
 </body>
