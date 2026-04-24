@@ -91,10 +91,26 @@ h2 {margin-bottom:10px;}
 }
 
 .buy:disabled {background:#ccc;}
+
+/* PAGE 2 */
+.page2 {
+  display:none;
+  padding:16px;
+}
+
+.card {
+  background:#fff;
+  padding:16px;
+  border-radius:12px;
+  margin-bottom:16px;
+}
 </style>
 </head>
 
 <body>
+
+<!-- ================= PAGE 1 ================= -->
+<div id="page1">
 
 <div class="header">
   <div>Artatix</div>
@@ -116,13 +132,11 @@ h2 {margin-bottom:10px;}
 <div class="section">
   <h2>Kategori Tiket</h2>
 
-  <!-- FESTIVAL -->
   <div class="ticket">
     <div class="ticket-header">
       <div>REGULAR: FESTIVAL</div>
       <div class="badge">On Sale</div>
     </div>
-
     <div class="ticket-body">
       <div class="price">Rp320.000</div>
       <div class="counter">
@@ -133,13 +147,11 @@ h2 {margin-bottom:10px;}
     </div>
   </div>
 
-  <!-- PREMIUM -->
   <div class="ticket">
     <div class="ticket-header">
       <div>REGULAR: PREMIUM</div>
       <div class="badge">On Sale</div>
     </div>
-
     <div class="ticket-body">
       <div class="price">Rp495.000</div>
       <div class="counter">
@@ -150,13 +162,11 @@ h2 {margin-bottom:10px;}
     </div>
   </div>
 
-  <!-- FAST TRACK -->
   <div class="ticket">
     <div class="ticket-header">
       <div>REGULAR: FAST TRACK</div>
       <div class="badge">On Sale</div>
     </div>
-
     <div class="ticket-body">
       <div class="price">Rp595.000</div>
       <div class="counter">
@@ -170,19 +180,11 @@ h2 {margin-bottom:10px;}
 
 <div class="summary">
   <h3>Rincian Pesanan</h3>
-  <div class="row">
-    <span>Festival</span><span id="fTotal">Rp0</span>
-  </div>
-  <div class="row">
-    <span>Premium</span><span id="pTotal">Rp0</span>
-  </div>
-  <div class="row">
-    <span>Fast Track</span><span id="faTotal">Rp0</span>
-  </div>
+  <div class="row"><span>Festival</span><span id="fTotal">Rp0</span></div>
+  <div class="row"><span>Premium</span><span id="pTotal">Rp0</span></div>
+  <div class="row"><span>Fast Track</span><span id="faTotal">Rp0</span></div>
   <hr>
-  <div class="row">
-    <strong>Total</strong><strong id="grand">Rp0</strong>
-  </div>
+  <div class="row"><strong>Total</strong><strong id="grand">Rp0</strong></div>
 </div>
 
 <div class="footer">
@@ -192,31 +194,43 @@ h2 {margin-bottom:10px;}
   <button class="buy" id="buy" disabled>Beli Sekarang</button>
 </div>
 
-<script>
-let data = {
-  festival:0,
-  premium:0,
-  fast:0
-};
+</div>
 
-const price = {
-  festival:320000,
-  premium:495000,
-  fast:595000
-};
+<!-- ================= PAGE 2 ================= -->
+<div id="page2" class="page2">
+
+<h2>Pembayaran QRIS</h2>
+
+<div class="card" style="text-align:center;">
+  <img src="qris.png" style="width:220px;margin-bottom:10px;">
+  <p><b>Scan QRIS Pembayaran</b></p>
+  <p>Masukan Jumlah Nominal sesuai total</p>
+  <h3 id="payTotal">Rp0</h3>
+</div>
+
+<div class="card">
+  <b>Upload Bukti Pembayaran</b><br><br>
+  <input type="file" id="bukti" style="width:100%;">
+</div>
+
+<button onclick="submitPayment()" 
+style="width:100%;padding:14px;border:none;border-radius:10px;background:#e53935;color:#fff;font-size:16px;">
+Submit
+</button>
+
+</div>
+
+<script>
+let data = {festival:0,premium:0,fast:0};
+
+const price = {festival:320000,premium:495000,fast:595000};
 
 function inc(type){
-  if(data[type] < 4){
-    data[type]++;
-    update();
-  }
+  if(data[type] < 4){ data[type]++; update(); }
 }
 
 function dec(type){
-  if(data[type] > 0){
-    data[type]--;
-    update();
-  }
+  if(data[type] > 0){ data[type]--; update(); }
 }
 
 function rupiah(num){
@@ -227,7 +241,6 @@ function update(){
   let f = data.festival * price.festival;
   let p = data.premium * price.premium;
   let fa = data.fast * price.fast;
-
   let total = f + p + fa;
 
   document.getElementById("festival").innerText = data.festival;
@@ -242,30 +255,29 @@ function update(){
   document.getElementById("grand2").innerText = rupiah(total);
 
   document.getElementById("buy").disabled = total === 0;
+}
+
+// PINDAH KE PAGE 2
+document.getElementById("buy").addEventListener("click", function(){
+  let total = document.getElementById("grand").innerText;
+
+  document.getElementById("payTotal").innerText = total;
+
+  document.getElementById("page1").style.display = "none";
+  document.getElementById("page2").style.display = "block";
+});
+
+// SUBMIT
+function submitPayment(){
+  let file = document.getElementById("bukti").files.length;
+
+  if(file === 0){
+    alert("Upload bukti pembayaran dulu!");
+    return;
   }
-  <!-- PAGE 2: PEMBAYARAN -->
-<div id="paymentPage" style="display:none;padding:16px;">
 
-  <h2>Pembayaran QRIS</h2>
-
-  <div style="background:#fff;padding:16px;border-radius:12px;text-align:center;margin-bottom:16px;">
-    <img src="qris.png" style="width:220px;margin-bottom:10px;">
-    <p style="font-weight:bold;">Scan QRIS untuk pembayaran</p>
-    <p>Masukan Jumlah Nominal sesuai total</p>
-  </div>
-
-  <div style="background:#fff;padding:16px;border-radius:12px;margin-bottom:16px;">
-    <label><b>Upload Bukti Pembayaran</b></label><br><br>
-    <input type="file" id="bukti" style="width:100%;">
-  </div>
-
-  <button onclick="submitPayment()" 
-    style="width:100%;padding:14px;border:none;border-radius:10px;background:#e53935;color:#fff;font-size:16px;cursor:pointer;">
-    Submit
-  </button>
-
-</div>
-  
+  window.location.href = "https://pending-payment.carrd.co/";
+}
 </script>
 
 </body>
