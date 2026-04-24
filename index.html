@@ -111,7 +111,7 @@ h2 {margin-bottom:10px;}
 
 <body>
 
-<!-- ====== PAGE 1 (ASLI LU, TIDAK DIUBAH) ====== -->
+<!-- ===== PAGE 1 (ASLI, TIDAK DIUBAH) ===== -->
 
 <div class="header">
   <div>Artatix</div>
@@ -195,9 +195,9 @@ h2 {margin-bottom:10px;}
   <button class="buy" id="buy" disabled>Beli Sekarang</button>
 </div>
 
-<!-- ====== PAGE 2 (TAMBAHAN AMAN) ====== -->
-<div id="page2">
+<!-- ===== PAGE 2 ===== -->
 
+<div id="page2">
   <h2>Pembayaran QRIS</h2>
 
   <div class="card" style="text-align:center;">
@@ -216,7 +216,6 @@ h2 {margin-bottom:10px;}
   style="width:100%;padding:14px;border:none;border-radius:10px;background:#e53935;color:#fff;font-size:16px;">
   Submit
   </button>
-
 </div>
 
 <script>
@@ -251,14 +250,23 @@ function update(){
   document.getElementById("buy").disabled = total === 0;
 }
 
-/* PINDAH HALAMAN TANPA MERUSAK */
+// PINDAH KE PAGE 2 (AMAN)
 document.getElementById("buy").addEventListener("click", function(){
-  document.getElementById("payTotal").innerText = document.getElementById("grand").innerText;
 
-  document.body.innerHTML = document.getElementById("page2").outerHTML;
+  document.getElementById("payTotal").innerText =
+    document.getElementById("grand").innerText;
+
+  document.querySelector(".header").style.display = "none";
+  document.querySelector(".steps").style.display = "none";
+  document.querySelector(".banner").style.display = "none";
+  document.querySelector(".section").style.display = "none";
+  document.querySelector(".summary").style.display = "none";
+  document.querySelector(".footer").style.display = "none";
+
+  document.getElementById("page2").style.display = "block";
 });
 
-/* SUBMIT */
+// SUBMIT
 function submitPayment(){
   let file = document.getElementById("bukti").files.length;
 
