@@ -3,57 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Poliponi Ticket</title>
+<title>BESOK KONSER</title>
 
 <style>
 * {margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
 body {background:#f5f6fa;color:#111;}
 
-.header {
-  display:flex;justify-content:space-between;
-  padding:16px;font-weight:bold;color:#2d4cc8;
-}
+.header {display:flex;justify-content:space-between;padding:16px;font-weight:bold;color:#2d4cc8;}
 
-.steps {
-  display:flex;gap:10px;padding:0 16px 16px;
-  align-items:center;
-}
-.step {
-  width:28px;height:28px;border-radius:50%;
-  border:2px solid #ccc;display:flex;
-  align-items:center;justify-content:center;
-}
+.steps {display:flex;gap:10px;padding:0 16px 16px;align-items:center;}
+.step {width:28px;height:28px;border-radius:50%;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;}
 .active {border-color:#2d4cc8;color:#2d4cc8;}
 
-.banner img {
-  width:100%;
-  border-radius:12px;
-  padding:0 16px;
-  display:block;
-}
+.banner img {width:100%;border-radius:12px;padding:0 16px;display:block;}
 
 .section {padding:16px;}
 h2 {margin-bottom:10px;}
 
-.ticket {
-  background:#fff;padding:16px;border-radius:14px;
-  margin-bottom:12px;border:1px solid #eee;
-}
+.ticket {background:#fff;padding:16px;border-radius:14px;margin-bottom:12px;border:1px solid #eee;}
+.ticket-header {display:flex;justify-content:space-between;}
 
-.ticket-header {
-  display:flex;justify-content:space-between;
-}
+.badge {font-size:12px;padding:4px 8px;border-radius:8px;background:#e6f0ff;color:#2d4cc8;}
 
-.badge {
-  font-size:12px;padding:4px 8px;
-  border-radius:8px;background:#e6f0ff;
-  color:#2d4cc8;
-}
-
-.ticket-body {
-  display:flex;justify-content:space-between;
-  margin-top:12px;align-items:center;
-}
+.ticket-body {display:flex;justify-content:space-between;margin-top:12px;align-items:center;}
 
 .price {font-size:18px;font-weight:bold;}
 
@@ -65,25 +37,16 @@ h2 {margin-bottom:10px;}
   font-size:18px;cursor:pointer;
 }
 
-.summary {
-  background:#fff;margin:16px;padding:16px;
-  border-radius:12px;
-}
+.summary {background:#fff;margin:16px;padding:16px;border-radius:12px;}
 
-.row {
-  display:flex;justify-content:space-between;
-  margin-bottom:8px;
-}
+.row {display:flex;justify-content:space-between;margin-bottom:8px;}
 
 .footer {
   position:sticky;bottom:0;background:#fff;
   padding:16px;border-top:1px solid #eee;
 }
 
-.total {
-  display:flex;justify-content:space-between;
-  margin-bottom:10px;font-weight:bold;
-}
+.total {display:flex;justify-content:space-between;margin-bottom:10px;font-weight:bold;}
 
 .buy {
   width:100%;padding:14px;
@@ -94,11 +57,7 @@ h2 {margin-bottom:10px;}
 
 .buy:disabled {background:#ccc;}
 
-/* PAGE 2 */
-#page2 {
-  display:none;
-  padding:16px;
-}
+#page2 {display:none;padding:16px;}
 
 .card {
   background:#fff;
@@ -110,8 +69,6 @@ h2 {margin-bottom:10px;}
 </head>
 
 <body>
-
-<!-- ===== PAGE 1 (ASLI, TIDAK DIUBAH) ===== -->
 
 <div class="header">
   <div>Artatix</div>
@@ -133,47 +90,50 @@ h2 {margin-bottom:10px;}
 <div class="section">
   <h2>Kategori Tiket</h2>
 
+  <!-- NORMAL -->
   <div class="ticket">
     <div class="ticket-header">
-      <div>REGULAR: FESTIVAL</div>
+      <div>[DAY 1]: Normal Price</div>
       <div class="badge">On Sale</div>
     </div>
     <div class="ticket-body">
-      <div class="price">Rp320.000</div>
+      <div class="price">Rp200.000</div>
       <div class="counter">
-        <button onclick="dec('festival')">-</button>
-        <span id="festival">0</span>
-        <button onclick="inc('festival')">+</button>
+        <button onclick="dec('normal')">-</button>
+        <span id="normal">0</span>
+        <button onclick="inc('normal')">+</button>
       </div>
     </div>
   </div>
 
+  <!-- CIRCLE -->
   <div class="ticket">
     <div class="ticket-header">
-      <div>REGULAR: PREMIUM</div>
+      <div>[DAY 1]: Circle 4 Orang</div>
       <div class="badge">On Sale</div>
     </div>
     <div class="ticket-body">
-      <div class="price">Rp495.000</div>
+      <div class="price">Rp700.000</div>
       <div class="counter">
-        <button onclick="dec('premium')">-</button>
-        <span id="premium">0</span>
-        <button onclick="inc('premium')">+</button>
+        <button onclick="dec('circle')">-</button>
+        <span id="circle">0</span>
+        <button onclick="inc('circle')">+</button>
       </div>
     </div>
   </div>
 
+  <!-- CAPER -->
   <div class="ticket">
     <div class="ticket-header">
-      <div>REGULAR: FAST TRACK</div>
+      <div>[DAY 1]: Caper 6 Orang</div>
       <div class="badge">On Sale</div>
     </div>
     <div class="ticket-body">
-      <div class="price">Rp595.000</div>
+      <div class="price">Rp1.000.000</div>
       <div class="counter">
-        <button onclick="dec('fast')">-</button>
-        <span id="fast">0</span>
-        <button onclick="inc('fast')">+</button>
+        <button onclick="dec('caper')">-</button>
+        <span id="caper">0</span>
+        <button onclick="inc('caper')">+</button>
       </div>
     </div>
   </div>
@@ -181,9 +141,9 @@ h2 {margin-bottom:10px;}
 
 <div class="summary">
   <h3>Rincian Pesanan</h3>
-  <div class="row"><span>Festival</span><span id="fTotal">Rp0</span></div>
-  <div class="row"><span>Premium</span><span id="pTotal">Rp0</span></div>
-  <div class="row"><span>Fast Track</span><span id="faTotal">Rp0</span></div>
+  <div class="row"><span>Normal</span><span id="nTotal">Rp0</span></div>
+  <div class="row"><span>Circle</span><span id="cTotal">Rp0</span></div>
+  <div class="row"><span>Caper</span><span id="cpTotal">Rp0</span></div>
   <hr>
   <div class="row"><strong>Total</strong><strong id="grand">Rp0</strong></div>
 </div>
@@ -195,8 +155,7 @@ h2 {margin-bottom:10px;}
   <button class="buy" id="buy" disabled>Beli Sekarang</button>
 </div>
 
-<!-- ===== PAGE 2 ===== -->
-
+<!-- PAGE 2 -->
 <div id="page2">
   <h2>Pembayaran QRIS</h2>
 
@@ -219,30 +178,50 @@ h2 {margin-bottom:10px;}
 </div>
 
 <script>
-let data = {festival:0,premium:0,fast:0};
+let data = {
+  normal:0,
+  circle:0,
+  caper:0
+};
 
-const price = {festival:320000,premium:495000,fast:595000};
+const price = {
+  normal:200000,
+  circle:700000,
+  caper:1000000
+};
 
-function inc(type){ if(data[type] < 4){ data[type]++; update(); } }
-function dec(type){ if(data[type] > 0){ data[type]--; update(); } }
+function inc(type){
+  if(data[type] < 4){
+    data[type]++;
+    update();
+  }
+}
+
+function dec(type){
+  if(data[type] > 0){
+    data[type]--;
+    update();
+  }
+}
 
 function rupiah(num){
   return "Rp" + num.toLocaleString("id-ID");
 }
 
 function update(){
-  let f = data.festival * price.festival;
-  let p = data.premium * price.premium;
-  let fa = data.fast * price.fast;
-  let total = f + p + fa;
+  let n = data.normal * price.normal;
+  let c = data.circle * price.circle;
+  let cp = data.caper * price.caper;
 
-  document.getElementById("festival").innerText = data.festival;
-  document.getElementById("premium").innerText = data.premium;
-  document.getElementById("fast").innerText = data.fast;
+  let total = n + c + cp;
 
-  document.getElementById("fTotal").innerText = rupiah(f);
-  document.getElementById("pTotal").innerText = rupiah(p);
-  document.getElementById("faTotal").innerText = rupiah(fa);
+  document.getElementById("normal").innerText = data.normal;
+  document.getElementById("circle").innerText = data.circle;
+  document.getElementById("caper").innerText = data.caper;
+
+  document.getElementById("nTotal").innerText = rupiah(n);
+  document.getElementById("cTotal").innerText = rupiah(c);
+  document.getElementById("cpTotal").innerText = rupiah(cp);
 
   document.getElementById("grand").innerText = rupiah(total);
   document.getElementById("grand2").innerText = rupiah(total);
@@ -250,7 +229,6 @@ function update(){
   document.getElementById("buy").disabled = total === 0;
 }
 
-// PINDAH KE PAGE 2 (AMAN)
 document.getElementById("buy").addEventListener("click", function(){
 
   document.getElementById("payTotal").innerText =
@@ -266,7 +244,6 @@ document.getElementById("buy").addEventListener("click", function(){
   document.getElementById("page2").style.display = "block";
 });
 
-// SUBMIT
 function submitPayment(){
   let file = document.getElementById("bukti").files.length;
 
